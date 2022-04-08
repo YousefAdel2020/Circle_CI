@@ -1,3 +1,4 @@
+
 version: 2.1
 orbs:
   node: circleci/node@4.1.0
@@ -10,6 +11,7 @@ jobs:
       - node/install
       - node/install-yarn
       - checkout
+      - aws-cli/setup
       - run:
           name: Front-End Install
           command: |
@@ -26,3 +28,7 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
+      - run:
+          name: Deploy App
+          command: |
+            npm run frontend:deploy
